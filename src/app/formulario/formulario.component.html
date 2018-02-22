@@ -1,0 +1,54 @@
+<div class="row">
+  <!-- menu-->
+  <app-navegation></app-navegation>
+  <!--menu -->
+  <!-- contenido central-->
+  <div class="col-6 paddigL">
+    <div class="text-center">
+      <p>Product registration</p>
+    </div>
+    <div class="text-right">
+      <a routerLink="/listado" class="btn btn-outline-secondary">Return</a>
+    </div>
+    {{name.length}}
+    <form (ngSubmit)="guardar()">
+
+      <label>Name:</label>
+      <input name="name"  type='text' [(ngModel)]='item.pro_descripcion'
+             class='form-control' placeholder='name' #name="ngModel" minlength="4" required>
+      <div *ngIf="name.errors?.required" class="form-control-feedback" style="color:red;">
+        This field is required
+      </div>
+      <label>Category:</label>
+      <select [(ngModel)]='item.pro_categoria' class='form-control' [ngModelOptions]="{standalone: true}" #unidad="ngModel" required>
+        <option *ngFor="let unidad of unidades" [value]="unidad.nombre">{{unidad.nombre}}</option>
+      </select>
+      <div *ngIf="unidad.errors?.required" class="form-control-feedback" style="color:red;">
+        This field is required
+      </div>
+      <label>Quantity:</label>
+      <input required name="marca"  type='text' [(ngModel)]='item.pro_cantidad' class='form-control' placeholder='Quantity' #marca="ngModel" minlength="4">
+      <div *ngIf="marca.errors?.required" class="form-control-feedback" style="color:red;">
+        This field is required
+      </div>
+      <label>Price</label>
+      <input required name='pventa' type='number' [(ngModel)]='item.pro_pventa' class='form-control' placeholder='Precio de venta' #pventa='ngModel' min='0'>
+      <div *ngIf="pventa.errors?.required" class="form-control-feedback" style="color:red;">
+        This field is required
+      </div>
+      <label>Descripction</label>
+      <input name='observaciones' type='text' [(ngModel)]='item.pro_observaciones' class='form-control' placeholder='Observaciones'>
+      <div class="text-right">
+        <button type="submit" class="btn btn-outline-success">Save</button>
+      </div>
+    </form>
+    <!--formulario-->
+  </div>
+  <!-- contenido central-->
+  <!-- extras -->
+  <app-additional></app-additional>
+  <!--extras -->
+</div>
+
+
+

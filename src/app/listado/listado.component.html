@@ -1,0 +1,52 @@
+<div class="row">
+  <!-- menu-->
+  <app-navegation></app-navegation>
+  <!--menu -->
+  <!-- contenido central-->
+  <div class="col-6 paddigL">
+    <div class="text-center">
+      <button type="button" [routerLink]="['/formulario']" class="btn btn-outline-primary">New product</button>
+    </div>
+    <hr>
+    <input type="text" class="form-control" [(ngModel)]="filterargs" placeholder="Search by name">
+    <!-- formulario -->
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th width="15%">Category</th>
+        <th width="15%">Price</th>
+        <th width="15%">Quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of listado | filtroProductos:'pro_pcompra':pcompra | filtroProductos:'pro_descripcion':filterargs">
+        <td class="item-descripcion">
+          {{item.pro_descripcion }}
+
+        </td>
+        <td align="center">
+          {{item.pro_categoria}}
+        </td>
+        <td align="center">
+          $ {{item.pro_pventa}}
+        </td>
+        <td align="center">
+          {{item.pro_cantidad}}
+        </td>
+        <td>
+        <span class="item-opciones">
+          <a [routerLink]="['/detalles', item.idproducto, 5]" class="btn btn-outline-info"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+          <button class="btn btn-outline-danger" (click)="confirmacion(item)" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="glyphicon glyphicon-erase"></i>Delete</button>
+        </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <!--formulario-->
+  </div>
+  <!-- contenido central-->
+  <!-- extras -->
+  <app-additional></app-additional>
+   <!--extras -->
+</div>
